@@ -14,6 +14,11 @@ async function bootstrap() {
   });
   app.use(helmet());
 
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
   await app.listen(port);
 }
 bootstrap().then(() => {
