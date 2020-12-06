@@ -9,6 +9,10 @@ export class CartService {
   private userCarts: Record<string, Cart> = {};
 
   findByUserId(userId: string): Cart {
+    if (!userId) {
+      return null;
+    }
+
     return this.userCarts[ userId ];
   }
 
@@ -41,7 +45,7 @@ export class CartService {
       id,
       ...rest,
       items: [ ...items ],
-    }
+    };
 
     this.userCarts[ userId ] = { ...updatedCart };
 
